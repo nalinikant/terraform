@@ -7,12 +7,10 @@ resource "aws_instance" "adi_instance"{
     ami = "ami-0233c2d874b811deb"
     instance_type = "t2.micro"
     security_groups = [aws_security_group.adi_sg.name]
-    depends_on = [aws_eip.adi_eip]
 }
 
 resource "aws_eip" "adi_eip"{
     instance = aws_instance.adi_instance.id
-    depends_on = [aws_security_group.adi_sg]
 }
 resource "aws_security_group" "adi_sg"{
     name = "Allow https"
